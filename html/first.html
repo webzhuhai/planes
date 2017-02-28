@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>首页</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="swiper/dist/css/swiper.min.css">
+    <script src="js/jquery-1.10.1.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="swiper/dist/js/swiper.min.js"></script>
+    <script src="swiper/dist/js/swiper.animate1.0.2.min.js"></script>
+     <style>
+  
+    </style>
+    <script>
+    $(function() {
+            //首页swiper部分
+            var swiper = new Swiper(".swiper-container", {
+                pagination: ".swiper-pagination",
+                spaceBetween: 20,
+                paginationClickable: true,
+                prevButton: ".swiper-button-prev",
+                nextButton: ".swiper-button-next",
+                loop: true, //循环模式
+                effect: "flip", //翻牌 的效果
+
+            });
+
+
+
+
+
+        }) //入口函数结尾
+    </script>
+</head>
+<body>
+	 <!-- 首页飞机图片 swiper-->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img srimages/feiji.jpg">
+            </div>
+            <div class="swiper-slide">
+                <img srimages/feiji2.jpg">
+            </div>
+            <div class="swiper-slide">
+                <img srimages/feiji3.jpg">
+            </div>
+            <div class="swiper-slide">
+                <img srimages/feiji4.jpg">
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev swiper-button-white"></div>
+        <div class="swiper-button-next swiper-button-white"></div>
+    </div>
+</body>
+</html>

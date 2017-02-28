@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>首页</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="swiper/dist/css/swiper.min.css">
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrapValidator.css">
+    <script src="js/jquery-1.10.1.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrapValidator.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="swiper/dist/js/swiper.min.js"></script>
+    <script src="swiper/dist/js/swiper.animate1.0.2.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/style.js"></script>
+    <style>
+    body,
+    html {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .swiper-wrapper {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .swiper-slide {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .swiper-slide img {
+        width: 100%;
+        height: 100%;
+    }
+    </style>
+    <script>
+    $(function() {
+            //首页swiper部分
+            var swiper = new Swiper(".swiper-container", {
+                pagination: ".swiper-pagination",
+                spaceBetween: 20,
+                paginationClickable: true,
+                prevButton: ".swiper-button-prev",
+                nextButton: ".swiper-button-next",
+                loop: true, //循环模式
+                effect: "flip", //翻牌 的效果
+
+            });
+
+            //表单验证部分,首先初始化。         
+        $("#myModal").bootstrapValidator({　　　　　　　　
+            message: 'This value is not valid',
+
+            fields: {
+                loginName: {
+                    message: '用户名验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '用户名不能为空'
+                        }
+                    }
+                },
+                password: {
+                    validators: {
+                        notEmpty: {
+                            message: '邮箱地址不能为空'
+                        }
+                    }
+                },
+
+
+            }
+        });
+
+
+        }) //入口函数结尾
+    </script>
+</head>
+
+<body>
+    <!-- 首页开始 bootstrap-->
+    <div class="navbar navbar-default  navbar-static-top navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand" style="color:skyblue;font-size:25px;text-shadow:3px 3px 1.5px rgba(200,200,200,0.6)">
+                       您已进入飞机票系统
+                </a>
+            </div>
+            <button class="btn btn-info navbar-btn navbar-right" data-toggle="modal" data-target="#myModal2" data-backdrop="static">注册:</button>
+            <button class="btn btn-success navbar-btn navbar-right" style="margin-right:5%" data-toggle="modal" data-target="#myModal" data-backdrop="static">登录:</button>
+        </div>
+    </div>
+    <!-- 首页飞机图片 swiper-->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="images/feiji.jpg">
+            </div>
+            <div class="swiper-slide">
+                <img src="images/feiji2.jpg">
+            </div>
+            <div class="swiper-slide">
+                <img src="images/feiji3.jpg">
+            </div>
+            <div class="swiper-slide">
+                <img src="images/feiji4.jpg">
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev swiper-button-white"></div>
+        <div class="swiper-button-next swiper-button-white"></div>
+    </div>
+
+<!-- 用户登录 -->
+    <div class="modal fade" id="myModal" ng-controller="loginController">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">用户登录</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid" id="container-fluid">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label for="loginName">用户名：</label>
+                                <input type="text" id="loginName" class="form-control" placeholder="请输入用户名" required name="loginName" ng-model="tijiao.loginName">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="password">用户密码：</label>
+                                <input type="password" id="password" class="form-control" placeholder="请输入密码" required name="password" ng-model="tijiao.password">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="userName">用户姓名：</label>
+                                <div class="input-group">
+                                    <input type="text" id="userName" class="form-control" placeholder="请输入姓名" required name="userName" ng-model="tijiao.userName">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                男：
+                                <input type="radio" name="sex" ng-model="tijiao.sex" id="sex"> 女：
+                                <input type="radio" name="sex" ng-model="tijiao.sex" id="sex">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="userlCard">身份证号：</label>
+                                <div class="input-group">
+                                    <input type="text" id="userlCard" class="form-control" placeholder="请输入身份证号" required name="userlCard" ng-model="tijiao.userlCard">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="mail">电子邮件：</label>
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-addon">@</div>
+                                    <input type="email" id="mail" class="form-control" placeholder="请输入电子邮件" name="mail" ng-model="tijiao.mail">
+                                </div>
+                            </div>
+                            </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="login()">登陆</button>
+                    <button class="btn btn-primary" ng-click="allFlights()">注册</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- 用户注册 -->
+    <div class="modal fade" id="myModal2" ng-controller="registeController">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">用户注册</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid" id="container-fluid">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label for="loginName">用户姓名：</label>
+                                <input type="text" id="loginName" class="form-control" placeholder="请输入用户名" required name="loginName" ng-model="tijiao.loginName">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="pwd">用户密码：</label>
+                                <input type="password" id="password" class="form-control" placeholder="请输入密码" required name="password" ng-model="tijiao.password">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="userName">用户姓名：</label>
+                                <div class="input-group">
+                                    <input type="text" id="userName" class="form-control" placeholder="请输入姓名" required name="userName" ng-model="tijiao.username">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                男：
+                                <input type="radio" name="sex" ng-model="tijiao.sex"> 女：
+                                <input type="radio" name="sex" ng-model="tijiao.sex">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="userlCard">身份证号：</label>
+                                <div class="input-group">
+                                    <input type="text" id="userlCard" class="form-control" placeholder="请输入身份证号" required name="userlCard" ng-model="tijiao.userlCard">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="mail">电子邮件：</label>
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-addon">@</div>
+                                    <input type="email" id="mail" class="form-control" placeholder="请输入电子邮件" name="mail" ng-model="tijiao.mail">
+                                </div>
+                            </div>
+                            </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">登陆</button>
+                    <button class="btn btn-primary" ng-click="allFlights()">注册</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

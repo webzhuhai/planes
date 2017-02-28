@@ -1,0 +1,14 @@
+.fourthContainer ul li{
+        float:left;
+        margin-bottom:2%;
+        margin-right:10px;}
+ #third2Container ul li{
+ 	margin-right:10px;
+ }
+  #third2Container ul li:first-child{
+  	   margin-left:20px;
+  }
+  #third2Container ul li:last-child{
+  	   margin-right:40px;
+  }
+

@@ -1,0 +1,19 @@
+{
+  "name": "zhuhai",
+  "version": "1.0.0",
+  "description": "zhuhai",
+  "main": "index.js",
+  "dependencies": {
+    "jQuery": "^1.7.4",
+    "less": "^2.7.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "zhuhai"
+  ],
+  "author": "zhuhai",
+  "license": "ISC"
+}

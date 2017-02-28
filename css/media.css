@@ -1,0 +1,40 @@
+@media screen and (min-width:100px) and (max-width:1000px) {
+	  #message input{
+	  	   width:100%;
+	  }
+	   
+	   
+}
+@media screen and (min-width:801px) and (max-width:1000px) {
+	    #container ul li{
+	  	   width:100%;
+	  	   margin-left:10%;
+	  }
+
+}
+@media screen and (min-width:601px) and (max-width:800px) {
+	    #container ul li{
+	  	   width:100%;
+	  	   margin-left:10%;
+	  }
+ 
+	 
+}
+@media screen and (min-width:301px) and (max-width:600px) {
+	  #container ul li{
+	  	   width:100%;
+	  	  
+	  } 
+	 
+	
+}
+@media screen and (min-width:100px) and (max-width:300px) {
+	  #container ul li{
+	  	   width:100%;
+	  	   margin-bottom:2%;
+	  	   margin-left:10%;
+	  }
+	  
+	 
+	    
+}

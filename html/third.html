@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/media.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+    <script src="js/jquery-1.10.1.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <style>
+    .header input {
+        width: 80px;
+        height: 30px;
+        border-radius: 30px;
+        outline: none;
+        padding-left: 8px;
+        margin-right: 0.5%;
+    }
+    
+    #container1 ul li {
+        float: left;
+    }
+    
+    #warning {
+        position: absolute;
+        top: 20%;
+        display: none;
+    }
+    </style>
+    <script>
+    $(function() {
+        // $("#tickitsManage").click(function(){
+        //     alert("zhu")
+        // })
+        // $(".date").css({
+        //     width: "120px",
+        //     borderRadius: "0px"
+        // })
+        // $(".modify").click(function() {
+        //     $("#myModal").modal('toggle');
+        // })
+        // $(".del").click(function() {
+        //     $(this).parent().parent().remove()
+        // })
+        // $("#del").click(function() {
+        //     $(this).parent().parent().remove()
+        // })
+        // $("#submit").click(function() {
+        //     $("#warning")[0].style.display = "block";
+        //     $("#warning_sure").click(function() {
+        //         $("#submit").attr("disabled", true);
+        //         $("#modify").attr("disabled", true);
+        //         $("#del").attr("disabled", true);
+        //         $("#warning")[0].style.display = "none";
+        //     })
+        //     $("#warning_del").click(function() {
+        //         $("#warning")[0].style.display = "none";
+        //     })
+        // })
+
+
+
+    })
+    </script>
+</head>
+
+<body>
+    <div class="container" id="container1" ng-controller="tickitsController">
+        <div class="wrapper">
+            <div class="row">
+                <ul>
+                    <li>查询条件：</li>
+                    <li>航班号：</li>
+                    <li>
+                        <input type="text" placeholder="航班号" style="width:70px;padding:5px;border-radius: 15px;margin-top:-5px;outline:none;border:1.5px solid #888">
+                    </li>
+                    <li>
+                        <button class="btn btn-info" style="margin-top:-5px;margin-left:5px">查询</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="row col-xs-12 col-md-12">
+                <table class="table table-striped table-bordered table-hover" style="margin-top:2%;width:100%">
+                    <thead>
+                        <tr>
+                            <th class="text-center">编号</th>
+                            <th class="text-center">航班号</th>
+                            <th class="text-center">出发城市</th>
+                            <th class="text-center">到达城市</th>
+                            <th class="text-center">时间区间</th>
+                            <th class="text-center">航空公司</th>
+                            <th class="text-center">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        <tr ng-repeat="(k,v) in results"> 
+                            <th class="text-center">{{v.id}}</th>
+                            <th class="text-center">{{v.no}}</th>
+                            <th class="text-center">{{v.leaveCity}}</th>
+                            <th class="text-center">{{v.arrivalCity}}</th>
+                            <th class="text-center">{{v.leaveTime}}--{{v.arrivalTime}}</th>
+                            <th class="text-center">{{v.company}}</th>
+                            <td class="text-center blue ticket"><button class="btn btn-info" id="tickitsManage" ng-click="tickitsManege()">机票管理</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- 管理二 -->
+    <div class="container" id="third2Container" style="display:none" ng-controller="manageController">
+        <div class="wrapper">
+            <div class="row">
+                <ul class="fl ul1" style="line-height:30px">
+                    <li class="fl" style="width:10%;height:10%"><img src="images/back.png" style="width:100%;height:100%"></li>
+                    <li class="fl">IU0001次航班</li>
+                </ul>
+                <ul class="fr ul2" style="line-height:30px">
+                    <li class="fl">日期：</li>
+                    <li class="fl">
+                        <input type="date">
+                    </li>
+                    <li class="fl">
+                        <button class="btn btn-default">查询</button>
+                    </li>
+                    <li class="fl">
+                        <button class="btn btn-info" data-toggle="modal" data-target="#myModal2">添加</button>
+                    </li>
+                    <li class="fl">
+                        <button class="btn btn-success">一键提交</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="row col-xs-12 col-md-12"  ng-controller="tickitsController">
+                <table class="table table-striped table-bordered table-hover" style="margin-top:2%;width:100%">
+                    <thead>
+                        <tr>
+                            <th class="text-center">操作</th>
+                            <th class="text-center">序号</th>
+                            <th class="text-center">日期</th>
+                            <th class="text-center">票数</th>
+                            <th class="text-center">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        <tr>
+                            <td class="text-center">
+                                <button type="btn btn-default" data-toggle="modal" data-target="#myModal1" id="modify">修改</button>
+                                <button type="btn btn-default" id="del">删除</button>
+                            </td>
+                            <td class="text-center">{{results.id}}</td>
+                            <td class="text-center">{{results.leaveTime}}--{{results.arrivalTime}}</td>
+                            <td class="text-center">{{results.totleSeats}}</td>
+                            <td class="text-center">
+                                <button class="btn btn-default" id="submit">提交</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- 管理二结束 -->
+    <!-- 模态声明 -->
+    <!--    默认是隐藏的，加上show会显示  fade 是显示的动画效果-->
+    <div class="modal fade" id="myModal1">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">IU0001次航班</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid" id="container-fluid">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="id" class="col-sm-2 control-label">ID</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="id" placeholder="请输入名字">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="date" class="col-sm-2 control-label" id="date">日期</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="date" placeholder="请输入姓">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ticket" class="col-sm-3 control-label">票数：头等舱：</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" id="ticket" placeholder="票数">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ticket" class="col-sm-3 control-label">经济舱</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" id="ticket" placeholder="票数">
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                </form>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">登陆</button>
+                    <button class="btn btn-primary">注册</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- 提交前的警告框 -->
+<div class="container col-xs-5 col-xs-offset-3" id="warning">
+    <div class="row">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h3 class="panel-title">提交确认</h3>
+            </div>
+            <div class="panel-body">
+                提交后将不能进行修改以及删除的操作，是否选择提交？
+            </div>
+            <div class="panel-footer">
+                <button class="btn btn-info" id="warning_sure">确认</button>
+                <button class="btn btn-success" id="warning_del">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 提交模态框（Modal） -->
+<div class="container modal-sm">
+    <div class="row">
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title text-center" id="myModalLabel">IU0001次航班</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="date" class="col-sm-2 control-label">日期</label>
+                                <div class="col-sm-6">
+                                    <input type="date" class="form-control" id="date" placeholder="请输入名字">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="day" class="col-sm-2 control-label">连续：</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="day" placeholder="1">
+                                </div>天
+                            </div>
+                              <div class="form-group">
+                                <label for="ticket" class="col-sm-3 control-label">票数：头等舱：</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" id="ticket" placeholder="票数">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ticket" class="col-sm-3 control-label">经济舱</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" id="ticket" placeholder="票数">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">添加</button>
+                        <button type="button" class="btn btn-primary">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
